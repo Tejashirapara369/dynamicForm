@@ -1,0 +1,31 @@
+<ng-container class="form-group" [formGroup]="form" [ngSwitch]="true">
+
+    <div class="form-group" *ngSwitchCase="key === 'address'">
+        <label [for]="key">{{FieldObj.label}}</label>
+        <textarea [name]="key" [id]="key" cols="30" rows="3" class="form-control"
+            [formControlName]="key"></textarea>
+            <div class="error-block" *ngIf="isInvalid">
+
+            <p *ngIf="control.errors.required">Please enter Address.</p>
+            </div>
+
+    </div>
+
+    <div class="form-group" *ngSwitchDefault >
+        <label [for]="key">{{FieldObj.label}}</label>
+        <input [type]="FieldObj.controlType" 
+            class="form-control" 
+            [placeholder]="FieldObj.placeholder || ''"
+            [formControlName]="key"
+            [id]="key"
+            >
+        <div class="error-block" *ngIf="isInvalid">
+            <p *ngIf="control.errors.required">Please enter {{FieldObj.label}}.</p>
+            <p *ngIf="control.errors.email">Please enter valid email ID.</p>
+            <p *ngIf="control.errors.minlength">Please enter minimum 
+                {{control.errors.minlength.requiredLength}} character.</p>
+
+        </div>
+    </div>
+
+</ng-container>

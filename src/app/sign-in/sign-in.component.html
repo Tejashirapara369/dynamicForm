@@ -1,0 +1,13 @@
+<div class="row">
+    <div class="col-md-6 offset-md-3">
+        <h3 align="center">Sign in</h3>
+        <app-form-control [form]='form' key="email"></app-form-control>
+        <app-form-control [form]='form' key="password"></app-form-control>
+        <div class="mt-3" align="center">
+            <button type="button" class="btn btn-primary" 
+                (click)="onSubmit()" 
+                [disabled]="form.invalid"
+                [routerLink]='["fillup-form"]'>SIGN IN</button>
+        </div>
+    </div>
+</div>

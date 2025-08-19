@@ -1,3 +1,39 @@
+# Dynamic Form (Angular 11)
+
+A tiny Angular demo showing how to build pages from **field metadata**:
+- Define fields once (`fields` + `formObj`)
+- Auto-generate a **Reactive FormGroup** with validators
+- Render each field via a reusable `<app-form-control>`
+
+##  What’s inside
+- Angular **11.x** (CLI 11.2.x), **ReactiveForms**
+- Two routes:
+  - `/` → **Sign In**
+  - `/fillup-form` → **Fill Up form**
+- Central generator: `generateForm(fieldKeys)` builds `FormGroup` using per-field rules
+
+##  How it works
+1. **Describe** forms in `src/app/shared/fields.ts`:
+   ```ts
+   export const formObj = {
+     signInForm: ['email','password'],
+     fillupForm: ['firstname','lastName','email','mobile','dob','city','address']
+   };
+
+   export const fields = {
+     email:    { controlType: 'email',    required: true, email: true,  label: 'Email Id',   placeholder: 'Enter your email ID' },
+     password: { controlType: 'password', required: true,              minLength: 8,        label: 'Password',  placeholder: 'Enter your password' },
+     firstname:{ controlType: 'text',     required: true,              minLength: 2,        label: 'First Name',placeholder: 'Enter your first name' },
+     lastName: { controlType: 'text',     required: true,              minLength: 2,        label: 'Last Name', placeholder: 'Enter your last name' },
+     mobile:   { controlType: 'tel',      required: true,              minLength: 10,       label: 'Mobile Number', placeholder: 'e.g. 6471234567' },
+     dob:      { controlType: 'date',     required: true,                                   label: 'Date of Birth' },
+     city:     { controlType: 'text',     required: true,                                   label: 'City', placeholder: 'Enter your city' },
+     address:  { /* textarea special-case in component */               required: true,      label: 'Address', placeholder: 'Street, Apt, ...' }
+   };
+
+
+
+
 # DynamicForm
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 11.2.11.
